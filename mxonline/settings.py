@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'operation',
     'xadmin',
     'crispy_forms',
-    'captcha'
+    'captcha',
+    'pure_pagination',
 ]
 AUTH_USER_MODEL = 'users.UserProfile'
 MIDDLEWARE = [
@@ -75,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -145,3 +147,6 @@ EMAIL_HOST_PASSWORD = 'tofjtcnjcplcbbbh'   # 邮箱独立授权码
 # EMAIL_USER_TLS = False   # 之前无法发送邮箱验证就是因为这里
 EMAIL_USE_SSL = True
 EMAIL_FROM = EMAIL_HOST_USER
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

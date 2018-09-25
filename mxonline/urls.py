@@ -17,9 +17,11 @@ from django.conf.urls import url, include
 # from django.contrib import admin
 from django.views.generic import TemplateView
 import xadmin
+from django.views.static import serve
 
-from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView
-
+from users.views import *
+from organization.views import *
+from mxonline.settings import MEDIA_ROOT
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
@@ -29,6 +31,15 @@ urlpatterns = [
     url(r'^active/(?P<active_code>.*)/$', ActiveUserView.as_view(), name='user_active'),
     url(r'^forget/$', ForgetPwdView.as_view(), name='forget_pwd'),
     url(r'^reset/(?P<active_code>.*)/$', ResetView.as_view(), name='reset_pwd'),
-    url(r'^modify/$',ModifyPwdView.as_view(), name='modify_pwd'),
+    url(r'^modify/$', ModifyPwdView.as_view(), name='modify_pwd'),
+
+    #课程机构url配置
+    url(r'^org/', include('organization.urls', namespace='org')),
+
+    #配置上传文件的访问处理函数
+    url(r'^media/(?P<path>.*)$', serve, {'document_root':MEDIA_ROOT}),
+
+
+
 
 ]
