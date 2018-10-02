@@ -15,7 +15,6 @@ class UserAskForm(forms.ModelForm):
     def clean_mobile(self):
         '''
         验证手机号码是否合法
-        :return:
         '''
         mobile = self.cleaned_data['mobile']
         REGEX_MOBILE = "^1[358]\d{9}$|^147\d{8}$|^17[67]\d{8}$"

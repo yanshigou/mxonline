@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 
 from .models import CourseOrg, CityDict
 from .forms import UserAskForm
+from courses.models import Course
 # Create your views here.
 
 
@@ -72,3 +73,13 @@ class AddUserAskView(View):
         else:
             return JsonResponse({'status':'fail', 'msg':'输入有误'})
 
+
+class OrgHomeView(View):
+    '''
+    机构首页
+    '''
+    def get(self, request, org_id):
+        course_org = CourseOrg.objects.get(id=int(org_id))
+        all_courses = course_org.course_set.all()[:3]
+        all_teachers = course_org.teacher_set.all()[:1]
+        return render(request, 'org-detail-homepage.html', locals())
