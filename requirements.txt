@@ -1,0 +1,12 @@
+certifi==2018.8.24
+chardet==3.0.4
+Django==1.11.8
+easygui==0.98.1
+idna==2.7
+mysql-connector-python==8.0.12
+Pillow==5.3.0
+pytz==2018.5
+requests==2.19.1
+urllib3==1.23
+virtualenv==16.0.0
+virtualenvwrapper-win==1.2.5
