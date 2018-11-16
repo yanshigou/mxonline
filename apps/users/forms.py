@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 __author__ = 'dzt'
 __date__ = '2018/09/09 19:34'
 from django import forms
