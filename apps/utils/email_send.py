@@ -19,6 +19,8 @@ def random_str(randomlength=8):
     return str
 
 
+url = '69.172.85.246:8000'
+
 def send_register_email(email, send_type="register"):
     email_record = EmailVerifyRecord()
     code = random_str(16)
@@ -32,14 +34,14 @@ def send_register_email(email, send_type="register"):
 
     if send_type == "register":
         email_title = 'edu在线网注册激活链接'
-        email_body = '请点击下面的链接激活你的账号: http://127.0.0.1:8000/active/{}'.format(code)
+        email_body = '请点击下面的链接激活你的账号: http://%s/active/{}'.format(code) % url
 
         send_status = send_mail(email_title, email_body, EMAIL_FROM, [email])
         if send_status:
             pass
     elif send_type == 'forget':
         email_title = 'edu在线网密码重置链接'
-        email_body = '请点击下面的链接重置密码: http://127.0.0.1:8000/reset/{}'.format(code)
+        email_body = '请点击下面的链接重置密码: http://%s/reset/{}'.format(code) % url
 
         send_status = send_mail(email_title, email_body, EMAIL_FROM, [email])
         if send_status:

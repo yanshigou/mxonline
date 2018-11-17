@@ -3,13 +3,13 @@
 DIR=`echo $(cd "$(dirname "$0")"; pwd)`
 LOGDIR="${DIR}/logs"
 
-sourcelogpath="${DIR}/Lock_uwsgi.log"
+sourcelogpath="${DIR}/mxonline_uwsgi.log"
 touchfile="${DIR}/.touchforlogrotate"
 
 
 DATE=`date +"%Y%m%d_%H%M%S"`
 echo $DATE
-destlogpath="${LOGDIR}/Lock_uwsgi_${DATE}.log"
+destlogpath="${LOGDIR}/mxonline_uwsgi_${DATE}.log"
 
 mv $sourcelogpath $destlogpath
 touch $touchfile
