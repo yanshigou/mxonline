@@ -15,4 +15,4 @@ kill -9 $id
 echo "kill $id"
 done
 echo  "################################################"
-nohup uwsgi --ini Lock_uwsgi.ini &
+nohup uwsgi --ini mxonline_uwsgi.ini &

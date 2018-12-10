@@ -2,4 +2,4 @@
 
 ./restart.sh
 sudo service nginx restart
-uwsgi --ini Lock_uwsgi.ini &
+uwsgi --ini mxonline_uwsgi.ini &

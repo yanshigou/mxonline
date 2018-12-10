@@ -20,6 +20,8 @@ def random_str(randomlength=8):
     return str
 
 
+# url = '69.172.85.246:8000'
+
 def send_register_email(email, send_type="register"):
     email_record = EmailVerifyRecord()
     code = random_str(16)
