@@ -11,7 +11,7 @@ class CourseListView(View):
     def get(self, request):
         all_courses = Course.objects.all().order_by("-add_time")
 
-        hot_courses = Course.objects.all().order_by("-students")
+        hot_courses = Course.objects.all().order_by("-students")[:5]
 
         # 课程排序
         sort = request.GET.get('sort', '')
