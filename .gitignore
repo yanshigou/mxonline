@@ -8,3 +8,8 @@
 
 00*
 fabfile*
+__pycache__/
+image/
+media/
+other/
+.gz
