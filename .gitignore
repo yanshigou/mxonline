@@ -13,3 +13,4 @@ image/
 media/
 other/
 .gz
+venv/
