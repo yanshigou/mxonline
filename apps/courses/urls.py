@@ -19,4 +19,7 @@ urlpatterns = [
 
     # 添加课程评论
     url(r'^add_comments/$', AddCommentsView.as_view(), name='course_add_comments'),
+
+    # 视频页面
+    url(r'^video/(?P<video_id>\d+)/$', VideoPlayView.as_view(), name='video_play'),
 ]

@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.views.generic.base import View
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
-from .models import Course, CourseResource
+from .models import Course, CourseResource, Video
 from operation.models import UserFavorite, CourseComments, UserCourse
 from django.http import HttpResponse, JsonResponse
 from utils.mixin_utils import LoginRequiredMixin
@@ -145,3 +145,33 @@ class AddCommentsView(View):
             course_comments.save()
             return JsonResponse({'status': 'success', 'msg': '添加成功'})
         return JsonResponse({'status': 'fail', 'msg': 't添加失败'})
+
+
+class VideoPlayView(View):
+    """
+    视频播放页面
+    """
+    def get(self, request, video_id):
+        video = Video.objects.get(id=int(video_id))
+        course = video.lesson.course
+
+        # 查询用户是否已经关联了该课程
+        usercourses = UserCourse.objects.filter(user=request.user, course=course)
+        if not usercourses:
+            usercourse = UserCourse.objects.create(user=request.user, course=course)
+            usercourse.save()
+
+        user_courses = UserCourse.objects.filter(course=course)
+        user_ids = [user_course.user.id for user_course in user_courses]
+        all_user_courses = UserCourse.objects.filter(user_id__in=user_ids)
+        # 取出所有课程id
+        course_ids = [user_course.course.id for user_course in all_user_courses]
+        # 该用户学过的其他课程
+        relate_courses = Course.objects.filter(id__in=course_ids).order_by('-click_nums')[:5]
+        all_resources = CourseResource.objects.filter(course=course)
+        return render(request, "course-play.html", {
+            "course": course,
+            "course_resources": all_resources,
+            "relate_courses": relate_courses,
+            "video": video
+        })
