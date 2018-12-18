@@ -147,7 +147,7 @@ class AddCommentsView(View):
         return JsonResponse({'status': 'fail', 'msg': 't添加失败'})
 
 
-class VideoPlayView(View):
+class VideoPlayView(LoginRequiredMixin, View):
     """
     视频播放页面
     """
