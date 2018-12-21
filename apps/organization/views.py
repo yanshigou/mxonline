@@ -233,3 +233,4 @@ class TeacherDetailView(View):
             "has_teacher_faved": has_teacher_faved,
             "has_org_faved": has_org_faved
         })
+

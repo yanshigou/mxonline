@@ -11,6 +11,7 @@ from django.contrib.auth.hashers import make_password
 from .forms import LoginForm, RegisterForm, ForgetForm, ModifyPwdForm
 from .models import UserProfile, EmailVerifyRecord
 from utils.email_send import send_register_email
+from utils.mixin_utils import LoginRequiredMixin
 
 
 class CustomBackend(ModelBackend):
@@ -112,8 +113,8 @@ class ResetView(View):
         return render(request, 'login.html')
 
 
-#更改密码中提交的时候 需要传重置密码的随机验证码，会提示url不符合规范  不能重用view
-#所以重新写个view
+# 更改密码中提交的时候 需要传重置密码的随机验证码，会提示url不符合规范  不能重用view
+# 所以重新写个view
 class ModifyPwdView(View):
     def post(self, request):
         modify_form = ModifyPwdForm(request.POST)
@@ -133,4 +134,12 @@ class ModifyPwdView(View):
             return render(request, 'password_reset.html', {'email': email, 'modify_form':modify_form})
 
 
+class UserInfoView(LoginRequiredMixin, View):
+    """
+    用户个人信息
+    """
+    def get(self, request):
+        return render(request, 'usercenter-info.html', {
+
+        })
 
