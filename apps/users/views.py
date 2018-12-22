@@ -164,7 +164,7 @@ class UploadImageView(LoginRequiredMixin, View):
             return JsonResponse({'status': 'fail'})
 
 
-class UpdatePwdView(View):
+class UpdatePwdView(LoginRequiredMixin, View):
     """
     修改用户密码
     """
@@ -181,3 +181,33 @@ class UpdatePwdView(View):
             return JsonResponse({'status': 'success'})
         else:
             return JsonResponse(modify_form.errors, safe=False)
+
+
+class SendEmailCodeView(LoginRequiredMixin, View):
+    """
+    发送邮箱验证码
+    """
+    def get(self, request):
+        email = request.GET.get('email', '')
+        if UserProfile.objects.filter(email=email):
+            return JsonResponse({'email': '邮箱已经存在'})
+        send_register_email(email, 'update_email')  # 发送邮件
+        return JsonResponse({'status': 'success'})
+
+
+class UpdateEmailView(LoginRequiredMixin, View):
+    """
+    填写验证码
+    修改邮箱
+    """
+    def post(self, request):
+        email = request.POST.get('email', '')
+        code = request.POST.get('code', '')
+        existed_records = EmailVerifyRecord.objects.filter(email=email, code=code, send_type='update_email')
+        if existed_records:
+            user = request.user
+            user.email = email
+            user.save()
+            return JsonResponse({'status': 'success'})
+        else:
+            return JsonResponse({'email': '验证码错误'})
