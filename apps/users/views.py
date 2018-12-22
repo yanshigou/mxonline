@@ -8,10 +8,11 @@ from django.db.models import Q
 from django.views.generic.base import View
 from django.contrib.auth.hashers import make_password
 
-from .forms import LoginForm, RegisterForm, ForgetForm, ModifyPwdForm
+from .forms import LoginForm, RegisterForm, ForgetForm, ModifyPwdForm, UploadImageForm
 from .models import UserProfile, EmailVerifyRecord
 from utils.email_send import send_register_email
 from utils.mixin_utils import LoginRequiredMixin
+from django.http import JsonResponse
 
 
 class CustomBackend(ModelBackend):
@@ -116,6 +117,9 @@ class ResetView(View):
 # 更改密码中提交的时候 需要传重置密码的随机验证码，会提示url不符合规范  不能重用view
 # 所以重新写个view
 class ModifyPwdView(View):
+    """
+    找回用户密码
+    """
     def post(self, request):
         modify_form = ModifyPwdForm(request.POST)
         if modify_form.is_valid():
@@ -139,7 +143,41 @@ class UserInfoView(LoginRequiredMixin, View):
     用户个人信息
     """
     def get(self, request):
-        return render(request, 'usercenter-info.html', {
+        return render(request, 'usercenter-info.html', {})
 
-        })
 
+class UploadImageView(LoginRequiredMixin, View):
+    """
+    用户修改头像
+    """
+    def post(self, request):
+
+        image_form = UploadImageForm(request.POST, request.FILES, instance=request.user)
+        if image_form.is_valid():
+            # instance=request.user  具有ModelForm的功能 可以直接使用保存
+            # image = image_form.cleaned_data['image']
+            # request.user.image = image
+            # request.user.save()
+            image_form.save()
+            return JsonResponse({'status': 'success'})
+        else:
+            return JsonResponse({'status': 'fail'})
+
+
+class UpdatePwdView(View):
+    """
+    修改用户密码
+    """
+    def post(self, request):
+        modify_form = ModifyPwdForm(request.POST)
+        if modify_form.is_valid():
+            pwd1 = request.POST.get('password1', '')
+            pwd2 = request.POST.get('password2', '')
+            if pwd1 != pwd2:
+                return JsonResponse({'status': 'fail', 'msg': "密码不一致"})
+            user = request.user
+            user.password = make_password(pwd2)
+            user.save()
+            return JsonResponse({'status': 'success'})
+        else:
+            return JsonResponse(modify_form.errors, safe=False)
