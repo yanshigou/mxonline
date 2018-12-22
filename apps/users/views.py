@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.views.generic.base import View
 from django.contrib.auth.hashers import make_password
 
-from .forms import LoginForm, RegisterForm, ForgetForm, ModifyPwdForm, UploadImageForm
+from .forms import LoginForm, RegisterForm, ForgetForm, ModifyPwdForm, UploadImageForm, UserInfoForm
 from .models import UserProfile, EmailVerifyRecord
 from utils.email_send import send_register_email
 from utils.mixin_utils import LoginRequiredMixin
@@ -144,6 +144,14 @@ class UserInfoView(LoginRequiredMixin, View):
     """
     def get(self, request):
         return render(request, 'usercenter-info.html', {})
+
+    def post(self, request):
+        userinfo_form = UserInfoForm(request.POST, instance=request.user)
+        if userinfo_form.is_valid():
+            userinfo_form.save()
+            return JsonResponse({'status': 'success'})
+        else:
+            return JsonResponse(userinfo_form.errors, safe=False)
 
 
 class UploadImageView(LoginRequiredMixin, View):
