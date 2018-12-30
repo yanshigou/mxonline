@@ -52,7 +52,7 @@ class CourseDetailView(View):
     """
     def get(self, request, course_id):
         course = Course.objects.get(id=int(course_id))
-        # 正价课程点击数
+        # 增加课程点击数
         course.click_nums += 1
         course.save()
 
@@ -84,6 +84,8 @@ class CourseInfoView(LoginRequiredMixin, View):
     """
     def get(self, request, course_id):
         course = Course.objects.get(id=int(course_id))
+        course.students += 1
+        course.save()
 
         # 查询用户是否已经关联了该课程
         usercourses = UserCourse.objects.filter(user=request.user, course=course)
