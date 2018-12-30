@@ -301,6 +301,11 @@ class MyMessageView(LoginRequiredMixin, View):
     """
     def get(self, request):
         all_messages = UserMessage.objects.filter(user=request.user.id)
+        # 进入个人消息后，清空未读消息
+        all_unread_messages = UserMessage.objects.filter(user=request.user, has_read=False)
+        for i in all_unread_messages:
+            i.has_read = True
+            i.save()
 
         try:
             page = request.GET.get('page', 1)
