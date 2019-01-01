@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 # from django.contrib import admin
-from django.views.generic import TemplateView
+# from django.views.generic import TemplateView
 import xadmin
 from django.views.static import serve
 
@@ -25,7 +25,10 @@ from organization.views import *
 from mxonline.settings import MEDIA_ROOT
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
+
+    # 静态页面
+    # url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
+    url(r'^$', IndexView.as_view(), name='index'),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
     url(r'^register/$', RegisterView.as_view(), name='register'),
