@@ -4,9 +4,10 @@
 .pyc
 00*
 fabfile*
-__pycache__/
+*__pycache__/
 image/
 media/
 other/
 .gz
 venv/
+
