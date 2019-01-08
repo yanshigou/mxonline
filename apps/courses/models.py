@@ -30,6 +30,14 @@ class Course(models.Model):
     def get_zj_nums(self):
         # 获取课程章节数
         return self.lesson_set.all().count()
+    # 显示函数名
+    get_zj_nums.short_description = '章节数'
+
+    def go_to(self):
+        from django.utils.safestring import mark_safe
+        return mark_safe("<a href='https://www.dogebug.cn'>跳转至博客</a>")
+    # 显示函数名
+    go_to.short_description = '跳转我的博客'
 
     def get_learn_users(self):
         # 获取学习人数中的5个
@@ -41,6 +49,14 @@ class Course(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class BannerCourse(Course):
+    class Meta:
+        verbose_name = '轮播课程'
+        verbose_name_plural = verbose_name
+        # 不再生成第二张表
+        proxy = True
 
 
 class Lesson(models.Model):
