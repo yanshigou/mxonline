@@ -10,4 +10,4 @@ media/
 other/
 .gz
 venv/
-
+*.tar.gz
