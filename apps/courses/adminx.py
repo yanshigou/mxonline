@@ -36,6 +36,8 @@ class CourseAdmin(object):
     list_editable = ['degree']
     # 自动页面刷新时间
     refresh_times = [3, 5, 10]
+    # excel导入
+    # import_excel = True
 
     # 分管理器显示指定数据
     def queryset(self):
@@ -52,6 +54,10 @@ class CourseAdmin(object):
             course_org.course_nums = Course.objects.filter(course_org=course_org).count()
             course_org.save()
 
+    # def post(self, request, *args, **kwargs):
+    #     if 'excel' in request.FILES:
+    #         print('ok')
+    #     return super(CourseAdmin, self).post(request, args, kwargs)
 
 
 class LessonAdmin(object):
