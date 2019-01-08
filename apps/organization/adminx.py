@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 __author__ = 'dzt'
 __date__ = '2018/09/09 13:35'
 
@@ -16,6 +17,9 @@ class CourseOrgAdmin(object):
     list_display = ['name', 'desc', 'click_nums', 'fav_nums', 'image', 'address', 'city', 'add_time']
     search_fields = ['name', 'desc', 'click_nums', 'fav_nums', 'image', 'address', 'city']
     list_filter = ['name', 'desc', 'click_nums', 'fav_nums', 'image', 'address', 'city', 'add_time']
+
+    # 下拉框变为搜索框
+    # relfield_style = 'fk-ajax'
 
 
 class TeacherAdmin(object):
