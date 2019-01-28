@@ -237,7 +237,7 @@ class ExportPlugin(BaseAdminPlugin):
         return __()
 
     def result_header(self, item, field_name, row):
-        item.export = not item.attr or field_name == '__str__' or getattr(item.attr, 'allow_export', True)
+        item.export = not item.attr or field_name == '' or getattr(item.attr, 'allow_export', True)
         return item
 
     def result_item(self, item, obj, field_name, row):
