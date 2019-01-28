@@ -7,7 +7,8 @@ from django.core.mail import send_mail
 
 from users.models import EmailVerifyRecord
 from mxonline.settings import EMAIL_FROM
-url = '69.172.85.246:8000'
+# url = '69.172.85.246:8000'
+url = '47.106.174.128:8000'
 
 
 def random_str(randomlength=8):
@@ -19,8 +20,6 @@ def random_str(randomlength=8):
         str += chars[random.randint(0, length)]
     return str
 
-
-# url = '69.172.85.246:8000'
 
 def send_register_email(email, send_type="register"):
     email_record = EmailVerifyRecord()
