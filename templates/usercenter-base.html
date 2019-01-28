@@ -91,10 +91,10 @@
 
 	<div class="left">
         <ul>
-            <li class="active2"><a href="{% url 'users:user_info' %}">个人资料</a></li>
-            <li ><a href="{% url 'users:mycourses' %}">我的课程</a></li>
-            <li ><a href="{% url 'users:myfav_org' %}">我的收藏</a></li>
-            <li >
+            <li {% if request.path == '/users/info/' %}class="active2"{% endif %}><a href="{% url 'users:user_info' %}">个人资料</a></li>
+            <li {% if request.path == '/users/mycourses/' %}class="active2"{% endif %}><a href="{% url 'users:mycourses' %}">我的课程</a></li>
+            <li {% if request.path == '/users/myfav/org/' %}class="active2"{% endif %}><a href="{% url 'users:myfav_org' %}">我的收藏</a></li>
+            <li {% if request.path == '/users/mymessage/' %}class="active2"{% endif %}>
                 <a href="{% url 'users:mymessage' %}" style="position: relative;">
                     我的消息
                 </a>
@@ -297,7 +297,7 @@
                 </div>
                 <div class="box">
                     <span class="word3">验证码</span>
-                    <input autocomplete="off" class="form-control-captcha find-password-captcha" id="find-password-captcha_1" name="captcha_f_1" placeholder="请输入验证码" type="text" /> <input class="form-control-captcha find-password-captcha" id="find-password-captcha_0" name="captcha_f_0" placeholder="请输入验证码" type="hidden" value="5f3c00e47fb1be12d2fd15b9a860711597721b3f" /> &nbsp;<img src="/captcha/image/5f3c00e47fb1be12d2fd15b9a860711597721b3f/" alt="captcha" class="captcha" />
+                    <input autocomplete="off" class="form-control-captcha find-password-captcha" id="find-password-captcha_1" name="captcha_f_1" placeholder="请输入验证码" type="text" /> <input class="form-control-captcha find-password-captcha" id="find-password-captcha_0" name="captcha_f_0" placeholder="请输入验证码" type="hidden" value="5f3c00e47fb1be12d2fd15b9a860711597721b3f" /> &nbsp;<img src="{% static 'captcha/image/5f3c00e47fb1be12d2fd15b9a860711597721b3f/' %}" alt="captcha" class="captcha" />
                 </div>
                 <div class="error btns" id="jsForgetTips"></div><!--忘记密码错误-->
                 <div class="button">
