@@ -1,7 +1,7 @@
 .git
 .idea
 .vscode
-.pyc
+*.pyc
 00*
 fabfile*
 *__pycache__/
