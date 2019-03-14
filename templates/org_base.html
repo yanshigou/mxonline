@@ -14,6 +14,32 @@
     {% block custom_css %}{% endblock %}
     <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}" type="text/javascript"></script>
+    <script type="text/javascript" src="{% static 'js/tctip-1.0.3.min.js' %}"></script>
+    <script>
+      new tctip({
+        top: '20%',
+        button: {
+          id: 6,
+          type: 'dashang'
+        },
+        list: [
+          {
+            type: 'alipay',
+            qrImg: '{% static 'images/alipay.png' %}'
+          }, {
+            type: 'wechat',
+            qrImg: '{% static 'images/wechatpay.png' %}'
+          }
+          , {
+            type: 'CodeForalipay',
+            icon:'{% static 'images/CodeIcon.png' %}',
+            qrImg: '{% static 'images/hongbao.png' %}',
+            name:'红包',
+            desc:'打开支付宝扫一扫 同学,领个红包再走'
+      }
+        ]
+      }).init()
+    </script>
     {% block custom_js %}{% endblock %}
 </head>
 <body>
