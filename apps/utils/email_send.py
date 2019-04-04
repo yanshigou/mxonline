@@ -7,8 +7,7 @@ from django.core.mail import send_mail
 
 from users.models import EmailVerifyRecord
 from mxonline.settings import EMAIL_FROM
-# url = '69.172.85.246:8000'
-url = '47.106.174.128:8000'
+url = 'www.dogebug.online'
 
 
 def random_str(randomlength=8):
