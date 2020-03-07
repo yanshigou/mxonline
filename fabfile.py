@@ -6,8 +6,8 @@ from fabvenv import virtualenv
 
 # 登录用户和主机名：
 env.user = 'ubuntu'
-env.password = 'dzt1234567!!?'
-env.hosts = ['111.229.74.137']
+env.password = 'dzt*******'
+env.hosts = ['***.***.74.137']
 pack_name = 'deploypack_mxonline.tar.gz'
 
 
@@ -31,7 +31,7 @@ def deploy():
     print(env.host)
     hosttag = ''
     remote_work_dir = ''
-    if env.host == '111.229.74.137':
+    if env.host == '***.***.74.137':
         remote_work_dir = '/home/ubuntu/www/test/'
         hosttag = 'mx'
     else:
@@ -54,7 +54,7 @@ def deploy():
     run('mv %sother/uwsgi_params_%s %suwsgi_params' % (remote_work_dir, hosttag, remote_work_dir))
     run('rm -rf %sother' % remote_work_dir)
     with cd(remote_work_dir):
-        if env.host == '111.229.74.137':
+        if env.host == '***.***.74.137':
             with virtualenv('/home/ubuntu/www/test/kkwork'):
                 run('python manage.py makemigrations')
                 run('python manage.py migrate')
