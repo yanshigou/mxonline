@@ -1,5 +1,5 @@
 #!/bin/sh
-NAME="walkerfree"
+NAME="mxonline_uwsgi.ini"
 if [ ! -n "$NAME" ];then
     echo "no arguments"
     exit;
