@@ -5,10 +5,11 @@ from fabric.api import *
 from fabvenv import virtualenv
 
 # 登录用户和主机名：
-env.user = 'root'
-env.password = '禁止使用'
-env.hosts = ['47.106.174.128']
+env.user = 'ubuntu'
+env.password = 'dzt1234567!!?'
+env.hosts = ['111.229.74.137']
 pack_name = 'deploypack_mxonline.tar.gz'
+
 
 def pack():
     ' 定义一个pack任务 '
@@ -30,8 +31,8 @@ def deploy():
     print(env.host)
     hosttag = ''
     remote_work_dir = ''
-    if env.host == '47.106.174.128':
-        remote_work_dir = '/root/www/test/'
+    if env.host == '111.229.74.137':
+        remote_work_dir = '/home/ubuntu/www/test/'
         hosttag = 'mx'
     else:
         exit(1)
@@ -53,8 +54,8 @@ def deploy():
     run('mv %sother/uwsgi_params_%s %suwsgi_params' % (remote_work_dir, hosttag, remote_work_dir))
     run('rm -rf %sother' % remote_work_dir)
     with cd(remote_work_dir):
-        if env.host == '47.106.174.128':
-            with virtualenv('/root/www/test/kkwork'):
+        if env.host == '111.229.74.137':
+            with virtualenv('/home/ubuntu/www/test/kkwork'):
                 run('python manage.py makemigrations')
                 run('python manage.py migrate')
                 run('chmod a+x ./restart.sh')
