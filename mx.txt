@@ -14,7 +14,7 @@ cryptography==2.3.1
 cssselect==1.0.3
 cycler==0.10.0
 diff-match-patch==20121119
-Django==1.11.8
+Django==2.2.24
 django-crispy-forms==1.6.1
 django-formtools==2.1
 django-import-export==1.1.0
