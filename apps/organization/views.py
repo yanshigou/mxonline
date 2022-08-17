@@ -13,10 +13,10 @@ from django.db.models import Q
 
 class OrgView(View):
     '''
-    课程机构列表功能
+    直播机构列表功能
     '''
     def get(self, request):
-        #课程机构
+        #直播机构
         all_orgs = CourseOrg.objects.all()
         hot_orgs = all_orgs.order_by('-click_nums')[:3]
 
@@ -48,7 +48,7 @@ class OrgView(View):
         org_nums = all_orgs.count()
 
 
-        #对课程机构进行分页
+        #对直播机构进行分页
         try:
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
@@ -101,7 +101,7 @@ class OrgHomeView(View):
 
 class OrgCourseView(View):
     '''
-    机构课程列表页
+    机构教程列表页
     '''
     def get(self, request, org_id):
         current_page = 'course'
@@ -204,7 +204,7 @@ class AddFavView(View):
 
 class TeacherListView(View):
     """
-    课程讲师列表页
+    教程讲师列表页
     """
     def get(self, request):
         all_teachers = Teacher.objects.all()
@@ -239,7 +239,8 @@ class TeacherListView(View):
         return render(request, "teachers-list.html", {
             "all_teachers": teachers,
             "sorted_teacher": sorted_teacher,
-            "sort": sort
+            "sort": sort,
+            "teacher_nums": len(all_teachers)
         })
 
 

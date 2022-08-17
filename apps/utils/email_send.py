@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 
 from users.models import EmailVerifyRecord
 from mxonline.settings import EMAIL_FROM
-url = 'www.dogebug.online'
+url = 'www.newaurora.com.cn'
 
 
 def random_str(randomlength=8):
@@ -36,7 +36,7 @@ def send_register_email(email, send_type="register"):
     email_body = ''
 
     if send_type == "register":
-        email_title = 'edu在线网注册激活链接'
+        email_title = '新极光在线网注册激活链接'
         # email_body = '请点击下面的链接激活你的账号: http://127.0.0.1:8000/active/{}'.format(code)
         email_body = '请点击下面的链接激活你的账号: http://%s/active/{}'.format(code) % url
 
@@ -44,7 +44,7 @@ def send_register_email(email, send_type="register"):
         if send_status:
             pass
     elif send_type == 'forget':
-        email_title = 'edu在线网密码重置链接'
+        email_title = '新极光在线网密码重置链接'
         # email_body = '请点击下面的链接重置密码: http://127.0.0.1:8000/reset/{}'.format(code)
         email_body = '请点击下面的链接重置密码: http://%s/reset/{}'.format(code) % url
 
@@ -52,7 +52,7 @@ def send_register_email(email, send_type="register"):
         if send_status:
             pass
     elif send_type == 'update_email':
-        email_title = 'edu在线网邮箱修改验证码'
+        email_title = '新极光在线网邮箱修改验证码'
         # email_body = '请点击下面的链接重置密码: http://127.0.0.1:8000/reset/{}'.format(code)
         email_body = '你的邮箱验证码为:{0}'.format(code)
 

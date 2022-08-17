@@ -80,10 +80,10 @@ $(function() {
 		$('#jsDemandForm > #name').focus();
 		switch (type){
 			case '1':
-				$secTips.html('快速获取课程资讯信息');
+				$secTips.html('快速获取教程资讯信息');
 				break;
 			case '2':
-				$secTips.html('提交教师信息，快速获取教师资讯');
+				$secTips.html('提交主播信息，快速获取主播资讯');
 				break;
 		}
 	});

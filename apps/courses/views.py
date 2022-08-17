@@ -16,13 +16,13 @@ class CourseListView(View):
 
         hot_courses = Course.objects.all().order_by("-students")[:5]
 
-        # 课程搜索
+        # 教程搜索
         search_keywords = request.GET.get('keywords', '')
         if search_keywords:
             all_courses = all_courses.filter(Q(name__icontains=search_keywords) | Q(desc__icontains=search_keywords) |
                                              Q(detail__icontains=search_keywords))
 
-        # 课程排序
+        # 教程排序
         sort = request.GET.get('sort', '')
         if sort:
             if sort == 'students':
@@ -30,7 +30,7 @@ class CourseListView(View):
             elif sort == 'hot':
                 all_courses = all_courses.order_by('-click_nums')
 
-        # 对课程进行分页
+        # 对教程进行分页
         try:
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
@@ -48,11 +48,11 @@ class CourseListView(View):
 
 class CourseDetailView(View):
     """
-    课程详情页
+    教程详情页
     """
     def get(self, request, course_id):
         course = Course.objects.get(id=int(course_id))
-        # 增加课程点击数
+        # 增加教程点击数
         course.click_nums += 1
         course.save()
 
@@ -80,14 +80,14 @@ class CourseDetailView(View):
 # LoginRequiredMixin 对登录进行验证
 class CourseInfoView(LoginRequiredMixin, View):
     """
-    课程章节信息
+    教程章节信息
     """
     def get(self, request, course_id):
         course = Course.objects.get(id=int(course_id))
         course.students += 1
         course.save()
 
-        # 查询用户是否已经关联了该课程
+        # 查询用户是否已经关联了该教程
         usercourses = UserCourse.objects.filter(user=request.user, course=course)
         if not usercourses:
             usercourse = UserCourse.objects.create(user=request.user, course=course)
@@ -96,9 +96,9 @@ class CourseInfoView(LoginRequiredMixin, View):
         user_courses = UserCourse.objects.filter(course=course)
         user_ids = [user_course.user.id for user_course in user_courses]
         all_user_courses = UserCourse.objects.filter(user_id__in=user_ids)
-        # 取出所有课程id
+        # 取出所有教程id
         course_ids = [user_course.course.id for user_course in all_user_courses]
-        # 该用户学过的其他课程
+        # 该用户学过的其他教程
         relate_courses = Course.objects.filter(id__in=course_ids).order_by('-click_nums')[:5]
         all_resources = CourseResource.objects.filter(course=course)
         return render(request, "course-video.html", {
@@ -114,7 +114,7 @@ class CommentsView(LoginRequiredMixin, View):
         all_resources = CourseResource.objects.filter(course=course)
         all_comments = CourseComments.objects.filter(course_id=course_id).order_by("-id")
 
-        # 查询用户是否已经关联了该课程
+        # 查询用户是否已经关联了该教程
         usercourses = UserCourse.objects.filter(user=request.user, course=course)
         if not usercourses:
             usercourse = UserCourse.objects.create(user=request.user, course=course)
@@ -123,9 +123,9 @@ class CommentsView(LoginRequiredMixin, View):
         user_courses = UserCourse.objects.filter(course=course)
         user_ids = [user_course.user.id for user_course in user_courses]
         all_user_courses = UserCourse.objects.filter(user_id__in=user_ids)
-        # 取出所有课程id
+        # 取出所有教程id
         course_ids = [user_course.course.id for user_course in all_user_courses]
-        # 该用户学过的其他课程
+        # 该用户学过的其他教程
         relate_courses = Course.objects.filter(id__in=course_ids).order_by('-click_nums')[:5]
         return render(request, "course-comment.html", {
             "course": course,
@@ -137,7 +137,7 @@ class CommentsView(LoginRequiredMixin, View):
 
 class AddCommentsView(View):
     """
-    用户添加课程评论
+    用户添加教程评论
     """
     def post(self, request):
         if not request.user.is_authenticated():
@@ -164,7 +164,7 @@ class VideoPlayView(LoginRequiredMixin, View):
         video = Video.objects.get(id=int(video_id))
         course = video.lesson.course
 
-        # 查询用户是否已经关联了该课程
+        # 查询用户是否已经关联了该教程
         usercourses = UserCourse.objects.filter(user=request.user, course=course)
         if not usercourses:
             usercourse = UserCourse.objects.create(user=request.user, course=course)
@@ -173,9 +173,9 @@ class VideoPlayView(LoginRequiredMixin, View):
         user_courses = UserCourse.objects.filter(course=course)
         user_ids = [user_course.user.id for user_course in user_courses]
         all_user_courses = UserCourse.objects.filter(user_id__in=user_ids)
-        # 取出所有课程id
+        # 取出所有教程id
         course_ids = [user_course.course.id for user_course in all_user_courses]
-        # 该用户学过的其他课程
+        # 该用户学过的其他教程
         relate_courses = Course.objects.filter(id__in=course_ids).order_by('-click_nums')[:5]
         all_resources = CourseResource.objects.filter(course=course)
         return render(request, "course-play.html", {

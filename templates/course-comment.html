@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}公开课评论 - 慕学在线网{% endblock %}
+{% block title %}直播评论 - 新极光{% endblock %}
 {% load staticfiles %}
 {% block custom_bread %}
     <section>
@@ -7,9 +7,9 @@
             <div class="crumbs">
                 <ul>
                     <li><a href="{% url 'index' %}">首页</a>></li>
-                    <li><a href="{% url 'course:course_list' %}">公开课程</a>></li>
-                    <li><a href="{% url 'course:course_detail' course.id %}">课程详情</a>></li>
-                    <li>课程评论</li>
+                    <li><a href="{% url 'course:course_list' %}">直播</a>></li>
+                    <li><a href="{% url 'course:course_detail' course.id %}">教程详情</a>></li>
+                    <li>教程评论</li>
                 </ul>
             </div>
         </div>
@@ -65,34 +65,34 @@
                     </div>
 
                     <!--发布评论-->
-                    <div id="js-pub-container" class="issques clearfix js-form">
-                        <div class="wgt-ipt-wrap pub-editor-wrap " id="js-pl-input-fake">
-                            <textarea id="js-pl-textarea" class="" placeholder="扯淡、吐槽、表扬、鼓励……想说啥就说啥！" ></textarea>
-                        </div>
-                        <input type="button" id="js-pl-submit" class="pub-btn" data-cid="452" value="发表评论">
-                        <p class="global-errortip js-global-error"></p>
-                    </div>
-                    <div id="course_note">
-                        <ul class="mod-post" id="comment-list">
-                            {% for user_comment in all_comments %}
-                            <li class="post-row">
-                                <div class="media">
-                                    <span target="_blank"><img src='{{ MEDIA_URL }}{{ user_comment.user.image }}' width='40' height='40' /></span>
-                                </div>
-                                <div class="bd">
-                                    <div class="tit">
-                                        <span target="_blank">{{ user_comment.user.username }}</span>
-                                    </div>
-                                    <p class="cnt">{{ user_comment.comments }}</p>
-                                    <div class="footer clearfix">
-                                        <span title="创建时间" class="l timeago">时间：{{ user_comment.add_time }}</span>
-                                    </div>
-                                </div>
-                            </li>
-                            {% endfor %}
-
-                        </ul>
-                    </div>
+{#                    <div id="js-pub-container" class="issques clearfix js-form">#}
+{#                        <div class="wgt-ipt-wrap pub-editor-wrap " id="js-pl-input-fake">#}
+{#                            <textarea id="js-pl-textarea" class="" placeholder="扯淡、吐槽、表扬、鼓励……想说啥就说啥！" ></textarea>#}
+{#                        </div>#}
+{#                        <input type="button" id="js-pl-submit" class="pub-btn" data-cid="452" value="发表评论">#}
+{#                        <p class="global-errortip js-global-error"></p>#}
+{#                    </div>#}
+{#                    <div id="course_note">#}
+{#                        <ul class="mod-post" id="comment-list">#}
+{#                            {% for user_comment in all_comments %}#}
+{#                            <li class="post-row">#}
+{#                                <div class="media">#}
+{#                                    <span target="_blank"><img src='{{ MEDIA_URL }}{{ user_comment.user.image }}' width='40' height='40' /></span>#}
+{#                                </div>#}
+{#                                <div class="bd">#}
+{#                                    <div class="tit">#}
+{#                                        <span target="_blank">{{ user_comment.user.username }}</span>#}
+{#                                    </div>#}
+{#                                    <p class="cnt">{{ user_comment.comments }}</p>#}
+{#                                    <div class="footer clearfix">#}
+{#                                        <span title="创建时间" class="l timeago">时间：{{ user_comment.add_time }}</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </li>#}
+{#                            {% endfor %}#}
+{##}
+{#                        </ul>#}
+{#                    </div>#}
 
                 </div>
                 <div class="aside r">
@@ -110,7 +110,7 @@
                         </ul>
                     </div>
                     <div class="box mb40">
-                        <h4>讲师提示</h4>
+                        <h4>主播提示</h4>
                         <div class="teacher-info">
                             <a href="/u/315464/courses?sort=publish" target="_blank">
                                 <img src='{{ MEDIA_URL }}{{ course.teacher.image }}' width='80' height='80' />
@@ -122,11 +122,11 @@
                         </div>
                         <div class="course-info-tip">
                             <dl class="first">
-                                <dt>课程须知</dt>
+                                <dt>教程须知</dt>
                                 <dd class="autowrap">{{ course.youneed_know }}</dd>
                             </dl>
                             <dl>
-                                <dt>老师告诉你能学到什么？</dt>
+                                <dt>主播告诉你能学到什么？</dt>
                                 <dd class="autowrap">{{ course.teacher_tell }}</dd>
                             </dl>
                         </div>
@@ -155,8 +155,8 @@
                                     <ul class="other-list">
                                         <li class="curr">
                                             <a href="/course/programdetail/pid/31?src=sug" target="_blank">
-                                                <img src="http://img.mukewang.com/56551e6700018b0c09600720-240-135.jpg" alt="Java工程师">
-                                                <span class="name autowrap">Java工程师</span>
+                                                <img src="http://img.mukewang.com/56551e6700018b0c09600720-240-135.jpg" alt="">
+                                                <span class="name autowrap"></span>
                                             </a>
                                         </li>
                                     </ul>

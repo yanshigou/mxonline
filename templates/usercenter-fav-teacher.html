@@ -1,6 +1,6 @@
 {% extends 'usercenter-base.html' %}
 {% load staticfiles %}
-{% block title %}我的收藏 - 幕学在线网{% endblock %}
+{% block title %}我的收藏 - 新极光在线网{% endblock %}
 
 {% block custom_bread %}
     <section>
@@ -24,9 +24,9 @@
             <div class="personal_des permessage">
                 <div class="head">
                     <ul class="tab_header messagehead">
-                        <li><a href="{% url 'users:myfav_org' %}">课程机构</a> </li>
-                        <li class="active"><a href="{% url 'users:myfav_teacher' %}">授课教师 </a></li>
-                        <li><a href="{% url 'users:myfav_course' %}">公开课程</a></li>
+                        <li><a href="{% url 'users:myfav_org' %}">直播机构</a> </li>
+                        <li class="active"><a href="{% url 'users:myfav_teacher' %}">授课主播 </a></li>
+                        <li><a href="{% url 'users:myfav_course' %}">直播</a></li>
                     </ul>
                 </div>
                 <div class="messagelist">
@@ -41,12 +41,12 @@
                             <dd>
                                 <h1>
                                     <a href="{% url 'org:teacher_detail' teacher.id %}">
-                                        {{ teacher.name }}<span class="key">认证教师</span>
+                                        {{ teacher.name }}<span class="key">认证主播</span>
                                     </a>
                                 </h1>
                                 <ul class="cont clearfix">
                                     <li class="time">工作年限：<span>{{ teacher.work_years }}年</span></li>
-                                    <li class="c7">课程数：<span>{{ teacher.get_course_nums }}</span></li>
+                                    <li class="c7">教程数：<span>{{ teacher.get_course_nums }}</span></li>
                                 </ul>
                                 <ul class="cont clearfix">
                                     <li class="time">工作公司：<span>{{ teacher.work_company }}</span></li>

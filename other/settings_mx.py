@@ -28,7 +28,7 @@ SECRET_KEY = '&#)q0=g@3q819iku!ujxzxhc-tfiye_m+%=1n_%v*c0r-jr=$+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['online.dogebug.cn', 'online.dogez.cn']
+ALLOWED_HOSTS = ['online.dogebug.cn', 'online.dogez.cn', 'www.newaurora.com.cn', 'www.dfoodsafety.cn']
 
 
 # Application definition

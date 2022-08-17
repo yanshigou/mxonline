@@ -379,23 +379,23 @@ $(function() {
 		$(".zy_success").removeClass("upmove");
 		$(this).parent().hide();
 		$(".sendE2").show().find("span").html("60s");
-        $.ajax({
-            cache:false,
-            type:'get',
-            dataType:'json',
-            url: "/user/send_again_email/",
-            data: {username:zyUname},
-             success: function(data){
-                 zy_str="验证邮件发送成功";
-                 //console.log(data)
-                 if(data)
-                    zy_Countdown();
-             },
-            error:function(){
-                zy_str="验证邮件发送失败";
-            }
-
-         });
+        // $.ajax({
+        //     cache:false,
+        //     type:'get',
+        //     dataType:'json',
+        //     url: "/user/send_again_email/",
+        //     data: {username:zyUname},
+        //      success: function(data){
+        //          zy_str="验证邮件发送成功";
+        //          //console.log(data)
+        //          if(data)
+        //             zy_Countdown();
+        //      },
+        //     error:function(){
+        //         zy_str="验证邮件发送失败";
+        //     }
+        //
+        //  });
 	});
 
 });

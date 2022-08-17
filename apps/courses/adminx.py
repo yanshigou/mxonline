@@ -30,7 +30,7 @@ class CourseAdmin(object):
     readonly_fields = ['students']
     # 不显示
     exclude = []
-    # 页面组装 把章节加入到课程页面 可多个 但只能做一层嵌套
+    # 页面组装 把章节加入到教程页面 可多个 但只能做一层嵌套
     inlines = [LessonInline, CourseResourceInline]
     # 列表页可以编辑
     list_editable = ['degree']
@@ -46,7 +46,7 @@ class CourseAdmin(object):
         return qs
 
     def save_models(self):
-        # 在保存课程的时候统计课程机构的课程数
+        # 在保存教程的时候统计直播机构的教程数
         obj = self.new_obj
         obj.save()
         if obj.course_org is not None:
@@ -89,7 +89,7 @@ class BannerCourseAdmin(object):
     readonly_fields = ['students']
     # 不显示
     exclude = []
-    # 页面组装 把章节加入到课程页面 可多个 但只能做一层嵌套
+    # 页面组装 把章节加入到教程页面 可多个 但只能做一层嵌套
     inlines = [LessonInline, CourseResourceInline]
 
     # 分管理器显示指定数据

@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
-	<title>慕学在线网登录</title>
+	<title>新极光登录</title>
 	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/login.css">
 </head>
@@ -37,9 +37,9 @@
 <header>
     <div class="c-box fff-box">
         <div class="wp header-box">
-            <p class="fl hd-tips">慕学在线网，在线学习平台！</p>
+            <p class="fl hd-tips">新极光，在线学习平台！</p>
             <ul class="fr hd-bar">
-                <li>服务电话：<span>33333333</span></li>
+                <li>服务电话：<span>68160000</span></li>
                 <li class="active"><a href="{% url 'login' %}">[登录]</a></li>
                 <li><a href="{% url 'register' %}">[注册]</a></li>
             </ul>
@@ -71,11 +71,11 @@
                     <input type='hidden' name='csrfmiddlewaretoken' value='mymQDzHWl2REXIfPMg2mJaLqDfaS1sD5' />
                     <div class="form-group marb20 {% if login_form.errors.username %}errorput{% endif %}">
                         <label>用&nbsp;户&nbsp;名</label>
-                        <input name="username" id="account_l" type="text" placeholder="手机号/邮箱" />
+                        <input name="username" id="account_l" type="text" placeholder="手机号/邮箱" value="test@qq.com" />
                     </div>
                     <div class="form-group marb8 {% if login_form.errors.password %}errorput{% endif %}">
                         <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-                        <input name="password" id="password_l" type="password" placeholder="请输入您的密码" />
+                        <input name="password" id="password_l" type="password" placeholder="请输入您的密码" value="test123" />
                     </div>
                     <div class="error btns login-form-tips" id="jsLoginTips">{% for key,error in login_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
                      <div class="auto-box marb38">
@@ -86,7 +86,7 @@
 {#                <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />#}
                 {% csrf_token %}
                 </form>
-                <p class="form-p">没有慕学在线网帐号？<a href="{% url 'register' %}">[立即注册]</a></p>
+                <p class="form-p">没有新极光帐号？<a href="{% url 'register' %}">[立即注册]</a></p>
             </div>
         </div>
     </div>

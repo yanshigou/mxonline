@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}公开课列表 - 慕学在线网{% endblock %}
+{% block title %}直播列表 - 新极光{% endblock %}
 {% load static %}
 {% load staticfiles %}
 {% block custom_bread %}
@@ -7,7 +7,7 @@
         <div class="wp">
             <ul  class="crumbs">
                 <li><a href="{% url 'index' %}">首页</a>></li>
-                <li>公开课</li>
+                <li>直播</li>
             </ul>
         </div>
     </section>
@@ -76,7 +76,7 @@
                 </div>
 			</div>
 			<div class="right layout">
-				<div class="head">热门课程推荐</div>
+				<div class="head">热门教程推荐</div>
 				<div class="group_recommend">
                     {% for hot_course in hot_courses %}
                     <dl>

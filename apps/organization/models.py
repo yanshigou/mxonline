@@ -28,15 +28,15 @@ class CourseOrg(models.Model):
     address = models.CharField(max_length=150, verbose_name='机构地址')
     city = models.ForeignKey(CityDict, verbose_name='所在城市')
     students = models.IntegerField(default=0, verbose_name='学习人数')
-    courses_nums = models.IntegerField(default=0, verbose_name='课程数')
+    courses_nums = models.IntegerField(default=0, verbose_name='教程数')
     add_time = models.DateTimeField(default=datetime.now)
 
     class Meta:
-        verbose_name = '课程机构'
+        verbose_name = '直播机构'
         verbose_name_plural = verbose_name
 
     def get_teacher_nums(self):
-        # 获取课程机构的教师数量
+        # 获取直播机构的主播数量
         return self.teacher_set.all().count()
 
     def __str__(self):
@@ -45,7 +45,7 @@ class CourseOrg(models.Model):
 
 class Teacher(models.Model):
     org = models.ForeignKey(CourseOrg, verbose_name='所属机构')
-    name = models.CharField(max_length=50, verbose_name='教师名')
+    name = models.CharField(max_length=50, verbose_name='主播名')
     work_years = models.IntegerField(default=0, verbose_name='工作年限')
     work_company = models.CharField(max_length=50, verbose_name='就职公司')
     work_position = models.CharField(max_length=50, verbose_name='公司职位')
@@ -57,7 +57,7 @@ class Teacher(models.Model):
     image = models.ImageField(default='', upload_to='teacher/%Y/%m', verbose_name='头像', max_length=100)
 
     class Meta:
-        verbose_name = '教师'
+        verbose_name = '主播'
         verbose_name_plural = verbose_name
 
     def __str__(self):

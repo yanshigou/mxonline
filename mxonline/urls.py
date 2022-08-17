@@ -29,6 +29,7 @@ urlpatterns = [
     # 静态页面
     # url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
     url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^AG/$', AGView.as_view()),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
     url(r'^register/$', RegisterView.as_view(), name='register'),
@@ -38,10 +39,10 @@ urlpatterns = [
     url(r'^reset/(?P<active_code>.*)/$', ResetView.as_view(), name='reset_pwd'),
     url(r'^modify/$', ModifyPwdView.as_view(), name='modify_pwd'),
 
-    # 课程机构url配置
+    # 直播机构url配置
     url(r'^org/', include('organization.urls', namespace='org')),
 
-    # 课程相关url配置
+    # 教程相关url配置
     url(r'^course/', include('courses.urls', namespace='course')),
 
     # 用户url配置

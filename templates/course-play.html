@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{ video.name }} - 慕学在线网{% endblock %}
+{% block title %}{{ video.name }} - 新极光{% endblock %}
 {% load staticfiles %}
 {% block custom_bread %}
     <section>
@@ -7,7 +7,7 @@
             <div class="crumbs">
                 <ul>
                     <li><a href="{% url 'index' %}">首页</a>></li>
-                    <li><a href="{% url 'course:course_list' %}">公开课程</a>></li>
+                    <li><a href="{% url 'course:course_list' %}">直播</a>></li>
                     <li><a href="{% url 'course:course_detail' course.id %}">{{ course.name }}</a>></li>
                     <li>{{ video.name }}</li>
                 </ul>
@@ -58,7 +58,7 @@
                     </ul>
                 </div>
                 <div id="notice" class="clearfix">
-                    <div class="l"> <strong>课程公告:</strong> <a  href="javascript:void(0)">Spring的文档以及相关的jar文件已上传</a> </div>
+                    <div class="l"> <strong>教程公告:</strong> <a  href="javascript:void(0)">视频文档已上传【点击下列章节观看视频】</a> </div>
                 </div>
 
                 <div class="mod-chapters">
@@ -70,7 +70,7 @@
                         <ul class="video">
                             {% for video in lesson.get_lesson_video %}
                             <li>
-                                <a target="_blank" href='{% url 'course:video_play' video.id %}' class="J-media-item studyvideo">{{ video.name }} ({{ video.learn_times }})
+                                <a target="_blank" href='{% url 'course:video_play' video.id %}' class="J-media-item studyvideo">【点击观看视频】{{ video.name }} ({{ video.learn_times }})
                                     <i class="study-state"></i>
                                 </a>
                             </li>
@@ -96,7 +96,7 @@
                         </ul>
                     </div>
                     <div class="box mb40">
-                        <h4>讲师提示</h4>
+                        <h4>主播提示</h4>
                         <div class="teacher-info">
                             <a href="/u/315464/courses?sort=publish" target="_blank">
                                 <img src='{{ MEDIA_URL }}{{ course.teacher.image }}' width='80' height='80' />
@@ -108,11 +108,11 @@
                         </div>
                         <div class="course-info-tip">
                             <dl class="first">
-                                <dt>课程须知</dt>
+                                <dt>教程须知</dt>
                                 <dd class="autowrap">{{ course.youneed_know }}</dd>
                             </dl>
                             <dl>
-                                <dt>老师告诉你能学到什么？</dt>
+                                <dt>主播告诉你能学到什么？</dt>
                                 <dd class="autowrap">{{ course.teacher_tell }}</dd>
                             </dl>
                         </div>
